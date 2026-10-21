@@ -1,0 +1,24 @@
+{
+  "name": "P🌀CKET LSR — Canlı Piyasa Terminali",
+  "short_name": "POCKET LSR",
+  "description": "Gerçek Binance mumlarıyla Liquidity Structure Reaction sinyal analizi",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#080e19",
+  "theme_color": "#0c1220",
+  "lang": "tr",
+  "icons": [
+    {
+      "src": "./assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
