@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="theme-color" content="#0c1220"/>
+<meta name="description" content="P🌀CKET LSR • Binance Spot/Futures gerçek mum verileriyle Liquidity Structure Reaction sinyal terminali"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://api.binance.com https://api1.binance.com https://data-api.binance.vision https://fapi.binance.com wss://stream.binance.com:443 wss://fstream.binance.com; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"/>
+<link rel="manifest" href="./manifest.webmanifest"/>
+<link rel="icon" href="./assets/icon.svg" type="image/svg+xml"/>
+<link rel="stylesheet" href="./style.css"/>
+<title>P🌀CKET LSR | Canlı Piyasa Terminali</title>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">P<span>◌</span></div>
+      <div><strong>P🌀CKET <em>LSR</em></strong><small>LIQUIDITY STRUCTURE REACTION</small></div>
+    </div>
+    <div class="sidebar-caption">ÇALIŞMA ALANI</div>
+    <nav class="navigation" aria-label="Uygulama bölümleri">
+      <button class="nav-item active" data-tab="terminal"><span class="nav-icon">▦</span><span>Terminal</span><b>01</b></button>
+      <button class="nav-item" data-tab="signals"><span class="nav-icon">↗</span><span>Sinyal geçmişi</span></button>
+      <button class="nav-item" data-tab="settings"><span class="nav-icon">⚙</span><span>Strateji ayarları</span></button>
+      <button class="nav-item" data-tab="verify"><span class="nav-icon">◎</span><span>Doğrulama</span></button>
+    </nav>
+    <div class="sidebar-footer"><span class="tiny-pill">PINE V5 PORT</span><p>Gerçek borsa verisi · Demo fiyat yok</p><p>Otomatik emir gönderilmez.</p></div>
+  </aside>
+  <div class="main-area">
+    <header class="topbar">
+      <div class="top-title"><span class="eyebrow">PİYASA / ANALİZ</span><h1 id="page-title">Canlı Terminal</h1></div>
+      <div class="top-actions"><span class="time-now" id="clock">--:--:--</span><span class="connection-status status-loading" id="connection"><span class="pulse-dot"></span><span id="connection-text">Veri bekleniyor</span></span><button id="install-btn" class="quiet-button hidden" type="button">＋ Yükle</button></div>
+    </header>
+    <main>
+      <section id="view-terminal" class="view active">
+        <div class="market-selector surface">
+          <div class="market-heading"><span class="market-coin">₿</span><div class="market-names"><b id="market-name">BTC / USDT</b><small id="market-subtitle">Binance Spot · Doğrulanmış mumlar</small></div></div>
+          <div class="market-controls"><label>PİYASA<br/><select id="market" aria-label="Piyasa"><option value="spot">Spot</option><option value="futures">USDⓈ-M Futures</option></select></label><label>PARİTE<br/><input id="symbol" spellcheck="false" autocapitalize="characters" maxlength="20" value="BTCUSDT" aria-label="Parite"/></label><label>PERİYOT<br/><select id="interval" aria-label="Zaman dilimi"><option value="1m">1m</option><option value="3m">3m</option><option value="5m" selected>5m</option><option value="15m">15m</option><option value="30m">30m</option><option value="1h">1h</option><option value="2h">2h</option><option value="4h">4h</option><option value="6h">6h</option><option value="8h">8h</option><option value="12h">12h</option><option value="1d">1d</option><option value="1w">1w</option><option value="1s">1s</option></select></label><button id="load-market" class="primary-button" type="button">↻ Bağlan</button></div>
+        </div>
+        <div class="stat-grid">
+          <article class="stat surface"><div class="stat-top">CANLI FİYAT <span>◈</span></div><div class="stat-value" id="price-val">—</div><div class="stat-foot" id="price-detail">Borsa bağlantısı bekleniyor</div></article>
+          <article class="stat surface"><div class="stat-top">KAZANMA ORANI <span>◎</span></div><div class="stat-value" id="winrate-val">—</div><div class="stat-foot"><span class="positive" id="wins-badge">0 kazanç</span> · <span class="negative" id="losses-badge">0 kayıp</span></div></article>
+          <article class="stat surface"><div class="stat-top">HESAPLANAN BAKİYE <span>◉</span></div><div class="stat-value" id="capital-val">—</div><div class="stat-foot" id="capital-detail">Simülasyon muhasebesi • emir yok</div></article>
+          <article class="stat surface"><div class="stat-top">SİNYAL MOTORU <span>↗</span></div><div class="stat-value stat-state" id="engine-state">—</div><div class="stat-foot" id="score-val">Skor: —</div></article>
+        </div>
+        <div class="content-grid">
+          <section class="chart-section surface">
+            <div class="panel-header"><div><span class="eyebrow">FİYAT HAREKETİ</span><h2>Canlı mum grafiği <span class="panel-sub">/ kapanmış barlar</span></h2></div><div class="chart-buttons"><button id="chart-less" title="Daha fazla mum">−</button><span id="chart-count">100</span><button id="chart-more" title="Daha az mum">＋</button></div></div>
+            <div class="chart-wrap"><canvas id="chart" aria-label="OHLC mum grafiği, LONG ve SHORT işaretleri"></canvas><div class="chart-empty" id="chart-empty"><div class="chart-empty-icon">⌁</div><b>Gerçek piyasa verisi bekleniyor</b><small>Veri alınmadan örnek mum veya sinyal gösterilmez.</small></div><div id="candle-tooltip" class="chart-tooltip hidden"></div></div>
+            <div class="chart-foot"><span><i class="legend up"></i> Yükseliş</span><span><i class="legend down"></i> Düşüş</span><span><i class="legend entry"></i> Sinyal</span><span class="chart-source" id="history-detail">Borsa: —</span></div>
+          </section>
+          <section class="side-section"><div class="surface status-card"><div class="panel-header"><div><span class="eyebrow">GÜNCEL DURUM</span><h2>Strateji izleme</h2></div><span class="mini-label" id="preset-label">PRESET 1</span></div><div class="signal-focus" id="focus-side"><span class="signal-icon">⌁</span><div><small>SON KESİNLEŞEN SİNYAL</small><strong id="last-signal">Henüz sinyal yok</strong><span id="last-signal-time">Gerçek mumlar yükleniyor</span></div></div><div class="divider"></div><div class="details"><div><span>Katılık / skor eşiği</span><b id="strict-detail">5 / 10</b></div><div><span>Aktif OB/FVG bölgesi</span><b id="zone-detail">—</b></div><div><span>İşlem durumu</span><b id="trade-detail">—</b></div><div><span>İşlem süresi</span><b id="length-detail">5 mum</b></div><div><span>Veri kapanışı</span><b id="bar-detail">—</b></div></div></div>
+          <div class="surface performance"><div class="panel-header"><div><span class="eyebrow">PERFORMANS</span><h2>İstatistikler</h2></div><span class="muted-tag">Mum kapanışı</span></div><div class="perf-grid"><div><small>Üst üste kazanç</small><strong id="streak-w">0</strong></div><div><small>Üst üste kayıp</small><strong id="streak-l">0</strong></div><div><small>Max kazanç serisi</small><strong id="max-w">0</strong></div><div><small>Max kayıp serisi</small><strong id="max-l">0</strong></div><div><small>Kümülatif zarar</small><strong id="cum-loss">—</strong></div><div><small>Sonraki yatırım</small><strong id="next-stake">—</strong></div></div><p class="perf-note">İstatistikler yalnızca yüklenen gerçek mum geçmişinde, orijinal indikatörün sanal işlem kurallarıyla hesaplanır.</p></div></section>
+        </div>
+        <div class="bottom-bar surface"><span class="dot-legend"></span><span id="bottom-message">Kaynak: Binance resmi piyasa verileri</span><button id="alerts-button" type="button">♬ Sesi aç</button></div>
+      </section>
+      <section id="view-signals" class="view"><div class="view-header"><span class="eyebrow">İŞLEMLER</span><h2>Sinyal geçmişi</h2><p>İşlemler yalnızca mum kapanışında kaydedilir. Sonuç için seçilen bar sayısı tamamlanır.</p></div><div class="surface list-surface"><div class="table-toolbar"><span id="signal-count">0 işlem</span><button id="download-csv" class="outlined-button" type="button">↓ Gerçek sonuçları CSV indir</button></div><div class="table-scroll"><table><thead><tr><th>Başlangıç (UTC)</th><th>Yön</th><th>Giriş</th><th>Sonuç</th><th>Fiyat</th><th>Durum</th></tr></thead><tbody id="signal-rows"><tr><td colspan="6" class="empty-row">Gerçek veri gelince sinyaller görünecek.</td></tr></tbody></table></div></div></section>
+      <section id="view-settings" class="view"><div class="view-header"><span class="eyebrow">KONTROL MERKEZİ</span><h2>İndikatör ayarları</h2><p>Orijinal Pine Script parametreleri. Değişiklikler bütün geçmiş mumlara yeniden uygulanır; hesaplar uydurma veri içermez.</p></div><div id="settings-editor" class="settings-grid"></div><div class="settings-footer"><button id="reset-settings" class="outlined-button" type="button">Varsayılanlara dön</button><span id="settings-message">Ayarlar bu cihazda saklanır.</span></div></section>
+      <section id="view-verify" class="view"><div class="view-header"><span class="eyebrow">KARŞILAŞTIRMA</span><h2>TradingView doğrulama</h2><p>Aynı sembol, Spot/Futures piyasa türü, zaman aralığı, ayarlar ve geçmiş veri başlangıcı kullanılmalı.</p></div><div class="verify-grid"><article class="surface verify-panel"><span class="eyebrow">SİSTEM KONTROLÜ</span><h2>Veri ve hesaplama</h2><div class="verify-line"><span>Kaynak</span><b>Binance resmi REST / WebSocket</b></div><div class="verify-line"><span>Sinyal tetikleyicisi</span><b>Onaylı bar kapanışı</b></div><div class="verify-line"><span>İleriye bakma</span><b>Gecikmeli pivot onayı</b></div><div class="verify-line"><span>Orijinal tarih filtresi</span><b id="date-mode">Canlı mod (kapalı)</b></div><div class="verify-line"><span>TradingView sinyal eşliği</span><b class="negative">Henüz sertifikalı değil</b></div><p class="warning-note">Binance ile farklı borsa, OTC, Heikin Ashi grafik veya farklı saat/başlangıç geçmişi kullanılırsa sinyaller eşleşmeyebilir. Bu uygulama gerçek emir göndermez.</p></article>
+            <article class="surface verify-panel"><span class="eyebrow">CSV KARŞILAŞTIRMA</span><h2>TradingView sinyalleriyle kıyasla</h2><p>TradingView'de dışa aktardığın <code>time,side</code> (UTC ISO veya Unix ms) başlıklı CSV dosyasını yükle. Terminaldeki sinyaller aynı tarihler üzerinden karşılaştırılır. Eşleşme yoksa uyarı verilir.</p><label class="file-input">↑ TradingView CSV dosyası seç<input type="file" id="tv-csv" accept=".csv,text/csv"/></label><div id="comparison-result" class="comparison-results">Henüz doğrulama CSV'si seçilmedi.</div><button id="download-raw-csv" class="outlined-button" type="button">↓ Web uygulaması sinyal CSV'si</button></article></div></section>
+    </main>
+    <footer class="app-footer">P🌀CKET LSR · Yalnızca analiz ve sanal işlem muhasebesi. Gerçek işlem yapılmaz, kâr garantisi yoktur. <span>v1.1 • Web/PWA</span></footer>
+  </div>
+</div>
+<script type="module" src="./src/app.mjs"></script>
+</body>
+</html>
